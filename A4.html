@@ -1,0 +1,662 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>BIT 116, Assignment 2</title>
+<style>
+<!--
+.style1 {color: red}
+table.MsoTableGrid
+  {border:1.0pt solid windowtext;
+  font-size:10.0pt;
+  font-family:"Times New Roman";
+  }
+ table.MsoNormalTable
+	{mso-style-parent:"";
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif"}
+ div.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+	
+.auto-style3 {
+	border-collapse: collapse;
+	font-size: 10.0pt;
+	font-family: "Times New Roman", serif;
+	border-style: none;
+	border-color: inherit;
+	border-width: medium;
+}
+.auto-style4 {
+	direction: ltr;
+	font-weight: normal;
+}
+.auto-style5 {
+	direction: ltr;
+}
+.auto-style6 {
+	background-color: #FF0000;
+}
+-->
+</style>
+</head>
+
+<body bgcolor="#f0f0f0">
+
+<p class="MsoNormal" style="text-align: center" align="center"><b>BIT 116 - 
+Scripting<br>
+Assignment 4</b></p>
+<p class="MsoNormal" align="center">
+<b><i>Due Date: See
+<a href="http://ccc.panitzco.com/mpanitz/Courses/BIT116/MainPage/Schedule.html">Course Schedule</a></i></b></p>
+<h1 align="center">Tic Tac Toe</h1>
+
+<center>
+<p align="center">
+<table class="MsoTableGrid" style="border-collapse: collapse; border: medium none; background: none repeat scroll 0% 0% yellow;" border="1" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td style="width: 6.15in; border: 1pt solid windowtext; padding: 0in 5.4pt;" bgcolor="#00D200" valign="top" width="590">
+    <p class="MsoNormal" align="center">
+    <span style="font-family: Helvetica,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+    <p class="MsoNormal" dir="ltr" align="center">
+    <span style="font-family: Helvetica,sans-serif">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>You 
+	ARE allowed to work in pairs (total of 2 people per group/team) for this 
+	assignment</u>&nbsp; You are also allowed to work by yourself, if you would 
+	prefer to work on your own.</span></p>
+	<p class="MsoNormal" dir="ltr" align="center">
+    <span style="font-family: Helvetica,sans-serif">If you have 
+    questions, please contact the instructor.</span></p>
+    <p class="MsoNormal" align="center">
+    <span style="font-family: Helvetica,sans-serif">&nbsp;</span></p></td>
+  </tr>
+</tbody></table>
+</p></center>
+
+<div class="MsoNormal" style="text-align: center" align="center">
+	<hr size="2" width="100%" align="center"></div>
+<h3>Implement the TicTacToe game!</h3>
+<p>For this assignment you will implement a game of TicTacToe, using the 
+provided starter files (listed below)(it is required that you build on the files 
+that are provided to you - do not start from scratch, an do not do a massive 
+rewrite of what you find in the files).</p>
+<p><b>Starter Files For 
+				Tic-Tac-Toe</b></p>
+<ul>
+	<li><a href="http://ccc.panitzco.com/mpanitz/Courses/BIT116/Homeworks/A4_TicTacToe/TicTacToe.html">HTML file</a></li>
+	<li><a href="http://ccc.panitzco.com/mpanitz/Courses/BIT116/Homeworks/A4_TicTacToe/TicTacToe.js">JavaScript file</a></li>
+	<li>Images:
+						<a href="http://ccc.panitzco.com/mpanitz/Courses/BIT116/Homeworks/A4_TicTacToe/Images/blank.gif">blank.gif</a>&nbsp;&nbsp;
+						<a href="http://ccc.panitzco.com/mpanitz/Courses/BIT116/Homeworks/A4_TicTacToe/Images/x.gif">x.gif</a>&nbsp;&nbsp;
+						<a href="http://ccc.panitzco.com/mpanitz/Courses/BIT116/Homeworks/A4_TicTacToe/Images/o.gif">o.gif</a></li>
+</ul>
+<p>The basic architecture for the game is this: the page maintains 3 arrays as 
+global variables: one for the top row of cells/blocks, one for the middle row of 
+blocks, and one for the bottom row of blocks..&nbsp; If you need to ask any 
+questions ("Has player X won?", or "Are there any blank spaces left?") you do so 
+by checking those arrays.&nbsp; If a player puts their mark (the 'X' or 'O') in 
+a block you do that by adjusting the array.&nbsp; You will need to implement a 
+routine which updates what the user sees on the web page based on what's in the 
+array.&nbsp; In other words: the global variables contain the "real" description 
+of the game; any changes are made there, and then the web page is adjust to 
+display that "real" information (as opposed to, say, basing the "real" 
+description of the game on what's on the web page).</p>
+<p>In order to help you break down this overall problem into smaller, more 
+manageable parts, the following sections each focus on one (or more) functions 
+that you will need to implement in order to successfully complete this 
+assignment.</p>
+<h2>Part 1: Game Setup</h2>
+<p>For this assignment, open up a copy of the provided TicTacToe.html, examine it, 
+and then open up a copy of TicTacToe.js.&nbsp; These two files provide a 
+non-trivial amount of starter code and structure; you will be 
+doing almost all your work in the TicTacToe.js file.</p>
+<h4 class="auto-style4">&nbsp;For this part of the assignment, you will need to implement the 
+<strong>resetGame</strong> 
+function, the <strong>renderBoard </strong>function, and the <strong>updateDisplay</strong> function, as described here:</h4>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: resetGame</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Parameters: </u>N<span style="font-family:&quot;Courier New&quot;">one<br>
+		</span><u><br>
+		User Input:</u> None<br>
+		<br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<font size="3">This function will create all three of the arrays (one 
+		for the top row, one for the middle row, and one for the bottom row), 
+		and make sure that all the elements of the array have the value BLANK 
+		(notice that BLANK is a global variable that we'll use whenever we want 
+		to indicate that a space on the board is neither X nor O - whenever it's 
+		blank).</font><p><font size="3">Additionally, it will set the game's 
+		state back to 'in progress', and update the page to indicuate who the 
+		current player is by using other functions that you will need to 
+		implement.</font></p></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Return Value:</u> None<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> None<br>
+		<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: renderBoard</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 139px; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 451px; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top">
+		<u>Parameters: </u>N<span style="font-family:&quot;Courier New&quot;">one<br>
+		</span><u><br>
+		User Input:</u> None<br>
+		<br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 139px; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 451px; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top">
+		<font size="3">This function will take the global variables representing 
+		the board (i.e. the three separate arrays), and make sure that the &lt;img&gt; elements 
+		all display the appropriate image.&nbsp; For example, the top-left image 
+		(whose id is '0_0') should display the image "Images/blank.gif" if board[0][0] is 
+		BLANK, "Images/x.gif" if board[0][0] is PLAYER_X, and "Images/o.gif" if 
+		board[0][0] is PLAYER_O.&nbsp; The image next to it (id = '0_1') should 
+		display an image based on board[0][1], etc.</font><font color="#005c00" size="3"><br>
+&nbsp;</font></td>
+	</tr>
+	<tr>
+		<td style="width: 139px; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 451px; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" class="auto-style5" valign="top">
+		<u>Return Value:</u> None<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> The images on the page should display the 
+		appropriate picture, based on the contents of the global arrays for eac 
+		h of the three rows.<br>
+		<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: updateDisplay</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Parameters: </u>N<span style="font-family:&quot;Courier New&quot;">one<br>
+		</span><u><br>
+		User Input:</u> None<br>
+		<br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		This function will put a message into the &lt;div&gt; element with the "currentPlayer" 
+		id telling the players whose turn it is, bsed on the currentPlayer 
+		global variable.</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Return Value:</u> None<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> A message indicating whose turn it is, on the 
+		page.<br>
+		<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<p>You should be able to test these functions and verify that they work.&nbsp; </p>
+<h2>Part 2: Only clicking on open blocks</h2>
+<p>You should start this part of the assignment by examining the clickOnBlock 
+function.&nbsp; Most of the rest of this assignment will involve 
+you implementing clickOnBlock's missing functions, but your overall understanding of the 
+assignment will be greatly enhanced by understanding how each individual part 
+works together.&nbsp; So take a couple of minutes and go through clickOnBlock 
+(and the next couple of sections), and try to develop an intuitive, holistic 
+view of how the program will (eventually) work together.</p>
+<p>Next, you'll need to implement and test the isBlockOccupied function, as described here:</p>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: isBlockOccupied</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Parameters: <br>
+		</u>row: the row of the &lt;img&gt; 
+		that was clicked on.<span style="font-family:&quot;Courier New&quot;">&nbsp; 
+		0 means the top row, 1 means the middle row, and 2 means the bottom row.<br>
+		</span>col:, the column of the &lt;img&gt; 
+		that was clicked on.<span style="font-family:&quot;Courier New&quot;">&nbsp; 
+		0 means the left column, 1 means the center column, and 2 means the 
+		right column.<br>
+		</span><u><br>
+		User Input:</u> None<br>
+		<br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		Determine if the block that was clicked on is an X, an O, or blank.</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Return Value:</u> True if the block is currently an X or an O, false 
+		if it's blank.<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> None<br>
+		<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<p><u>Note:</u> In order to test this, you may want to put a bunch of alerts in 
+the function(s) that you're writing, and make sure that it's actually doing the 
+correct thing.<br>
+<u>Note on the note:</u> This is sometimes called <b><i>instrumenting</i></b> 
+your program with debugging code.</p>
+<h2>Part 3: changeBlock, switchPlayer functions</h2>
+<p>For this part of the assignment, you'll need to implement and test the 
+changeBlock and switchPlayer functions, as described below.&nbsp; Additionally, 
+you'll need to modify any other functions, as needed, in order to ensure that 
+these get called correctly.</p>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: changeBlock</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Parameters: </u><br>
+		row: the row of the &lt;img&gt; 
+		that was clicked on.<span style="font-family:&quot;Courier New&quot;"><br>
+		</span>col:, the column of the &lt;img&gt; 
+		that was clicked on.<span style="font-family:&quot;Courier New&quot;"><br>
+		toPlayer: the player that the block should be changed to.&nbsp; This is 
+		either PLAYER_X or PLAYER_O<br>
+		</span><u><br>User Input:</u> None<br><br>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		Change the appropriate slot of the board array to be either PLAYER_X or 
+		PLAYER_O, based on what toPlayer is..</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Return Value:</u> None<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> None.&nbsp; The game will call renderBoard<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: switchPlayers</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Parameters: </u>None<span style="font-family:&quot;Courier New&quot;"><br>
+		</span><u><br>User Input:</u> None<br><br>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		Swap the current player for the other player.&nbsp; If the current 
+		player is PLAYER_X, then once this function is done PLAYER_O should be the current 
+		player, and vice versa.<br>
+&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Return Value:</u> None<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> None (updateDisplay will be called later to 
+		update the current player information on the page)<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<h2>Part 4: checkForVictory</h2>
+<p>For this part of the assignment, you'll need to implement and test the routines 
+that check and see if one of the two players has won.&nbsp; There are three 
+separate routines to implement and test - it is recommended that you implement 
+one, then test it, then go on to the next one, etc:</p>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: checkColForVictory</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Parameters: </u><br>
+		col: the index of the column to check.&nbsp; 
+		Remember that the first (left-most) column is column 0!<br>
+		player: either PLAYER_X or PLAYER_O.&nbsp; Check to see if this player 
+		has three in a row for the indicated column.<br>
+		<br><u>User Input:</u> None<br>
+		<br>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		See if all three rows in the indicated column all contain <b>player</b>'s 
+		pieces.</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Return Value:</u> true if all three rows in the indicated column all 
+		contain the <b>player</b>'s pieces; false if there's a mix, or if all 
+		three rows contain blanks.<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> None - the clickOnBlock method will handle the 
+		user feedback<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<p><br>
+</p>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: checkRowForVictory</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Parameters: <br>
+		</u>row, which is the index of the row to check.&nbsp; 
+		Row 0 is the top-most row.<u> <br>
+		</u>player: either PLAYER_X or PLAYER_O.&nbsp; Check to see if this 
+		player has three in a row for the indicated row.<u><br>
+		<br>User Input:</u> None<br><br>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		See if all three columns&nbsp; in the indicated row all contain <b>
+		player</b>'s pieces.</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Return Value:</u> true if all three columns in the indicated row all 
+		contain the <b>player</b>'s pieces; false if there's a mix, or if all three 
+		rows contain blanks.<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> None - the clickOnBlock method will handle the 
+		user feedback<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<p>&nbsp;</p>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: checkDiagonalsForVictory</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Parameters:<br>
+		</u>player: either PLAYER_X or PLAYER_O.&nbsp; Check to see if this 
+		player has three in a row for either of the two diagonals.<u><br>
+		<br>User Input:</u> None<br><br>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		See if the top-left to bottom-right, or bottom-left to top-right 
+		diagonals all contain <b>player</b>'s pieces.</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Return Value:</u> true if all the blocks on either diagonal all 
+		contain the <b>player</b>'s pieces; false if there's a mix, or if all three 
+		blocks contain blanks.<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> None - the clickOnBlock method will handle the 
+		user feedback<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<h2>Part 5: Is the game over?</h2>
+<p>The final thing to check for is the game being over with neither player 
+winning.&nbsp; In other words, if there's no open space on the board (and after 
+we've already checked to see if one player won), then the game is over because 
+there's no place left to move.&nbsp; For this assignment, implement the following 
+function:</p>
+<table class="auto-style3" border="1" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td colspan="2" style="width: 6.15in; border: 1pt solid black; padding: 0in 5.4pt; background: none repeat scroll 0% 0% black;" valign="top" width="590">
+		<font color="#FFFFFF">
+		<b><span style="font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Function: openSpaceExists</span></b></font></td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Input:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Parameters:</u> None<u><br>
+		<br>User Input:</u> None<br><br>&nbsp;</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Processing:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		See if there's at least one element of the three global arrays that is BLANK.</td>
+	</tr>
+	<tr>
+		<td style="width: 103.1pt; border-left: 1pt solid black; border-right: 1pt solid black; border-width: medium 1pt 1pt; border-style: none solid solid; border-color: -moz-use-text-color black black; padding: 0in 5.4pt;" valign="top" width="137">
+		<span style="font-size:14.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">
+		Output:</span></td>
+		<td style="width: 339.7pt; border-left: medium none; border-right: 1pt solid black; border-width: medium 1pt 1pt medium; border-style: none solid solid none; border-color: -moz-use-text-color black black -moz-use-text-color; padding: 0in 5.4pt;" valign="top" width="453">
+		<u>Return Value:</u> true if there's at least one element of board that 
+		is BLANK; false if every single elemetn of board is either PLAYER_X or 
+		PLAYER_O.<u><br>
+		</u><br>
+		<br>
+		<u>Output To User:</u> None<br>
+&nbsp;</td>
+	</tr>
+</tbody></table>
+<h3>Restrictions and Requirements:</h3>
+<ul style="margin-bottom: 0in" type="disc">
+	<li><b><span style="background-color: #FFFF00">One goal for this assignment 
+	is to give you some practice in examining and extending someone else's work.&nbsp; 
+	To that end, you MUST use the provided starter files, and you must fill in 
+	the missing pieces so that the game works.&nbsp; Doing a substantial rewrite 
+	will be penalized.</span></b><ul style="margin-bottom: 0in" type="disc">
+	<li>Similarly, you must examine the provided code, and try to build yours on 
+	what is provided.&nbsp; It's ok to deviate to a small degree, but you should 
+	make use of just about everything that's provided to you in the starter 
+	files.</li>
+</ul>
+	</li>
+	<li>
+	<p dir="ltr">Make sure to place the assignment number, <strong>A4</strong>, into the 
+	&lt;title&gt; tag in the &lt;head&gt; of your document.&nbsp; Follow it with a 
+	colon (
+	<strong>: </strong>)<strong> </strong>and <strong>your full name</strong>. This is a required part of each 
+	and every homework assignment!<br>Example:
+	<strong><em>&lt;title&gt;A4: Jon Peck &lt;/title&gt; </em></strong>
+</p><ul style="margin-bottom: 0in" type="disc">
+	<li><em style="font-style: normal"><strong style="font-weight: 400">If 
+	you're working in a pair, then place both peoples' names in the title, like 
+	so: </strong></em>
+	<strong><em>&lt;title&gt;A4: Larry Page and Sergey Brin&lt;/title&gt; </em></strong>
+	</li>
+</ul>
+	</li>
+	<li>Check your syntax carefully
+	<ul style="margin-bottom: 0in" type="disc">
+	<li>Don't forget the " <strong><em>; </em></strong>" - 
+		you are required to end each statement with this (just like in Java) 
+		even in those situations when JavaScript will run correctly without 
+		them.&nbsp; This is a required part of each and every homework 
+		assignment!&nbsp; <br>
+		</li>
+</ul></li>
+	<li>Your JavaScript must be placed into a separate .JS file, and referenced 
+	from the HTML page<ul style="margin-bottom: 0in" type="disc">
+		<li>The provided starter files already do this, so you should not need 
+		to do anything in particular in order to fulfill this requirement.</li>
+	</ul>
+	</li>
+	<li>Your .HTML file must work correctly in Mozilla FireFox 
+	(Version 8 or higher).</li>
+</ul>
+<h3>Example Solution Video</h3>
+<p>&nbsp;<span>&nbsp;&nbsp;&nbsp; There is a
+<a href="http://ccc.panitzco.com/mpanitz/Courses/BIT116/Homeworks/A4_TicTacToe/A4_QuickExampleSolution/A4_QuickExampleSolution.html">a video available 
+online </a>that demonstrates a possible solution to this assignment. Keep in 
+mind that this document governs your assignment - if there's anything in the 
+video that contradicts what's in this document, this document will be what's 
+used to determine your grading.</span></p>
+<h3 dir="ltr">Grading Rubric:</h3>
+<p dir="ltr">There is no sample rubric 
+available for this assignment.</p>
+
+<h3 dir="ltr">Homework Feedback:</h3>
+<p>You must download the <a href="http://ccc.panitzco.com/mpanitz/Courses/BIT116/Homeworks/Homework_Feedback.doc">feedback file </a>on 
+the homework, fill it out, and include it in your homework submission.</p>
+
+<h3>What to hand in:</h3>
+<ol start="1" style="margin-bottom: 0in" type="1">
+	<li class="MsoNormal">TicTacToe.html</li>
+	<li class="MsoNormal">TicTacToe.js</li>
+	<li class="MsoNormal">All the images (yes, I have them, but please hand them 
+	in again, in the correct location relative to your .HTML file (in case you've put them into a subdirectory, etc)&nbsp;&nbsp; 
+	)</li>
+	<li class="MsoNormal">A <a href="http://ccc.panitzco.com/mpanitz/Courses/BIT116/Homeworks/Homework_Feedback.doc">feedback file </a>
+	on the homework.&nbsp; </li>
+</ol>
+
+<p>Everything should be placed into a single .ZIP file, and everything should be 
+set up so that it can be run from whatever directory it is extracted into.</p>
+<p>Note: If you work with a partner, then ONE person (and only one person) 
+should hand in the .ZIP containing all the work.&nbsp; Make sure that both 
+peoples' names are listed in the various files that you've handed in.</p>
+<h3>How To Hand In Your Homework:</h3>
+<p>Hand in this homework in the same way that you've previously handed in your 
+homeworks.</p>
+
+
+
+</body></html>
